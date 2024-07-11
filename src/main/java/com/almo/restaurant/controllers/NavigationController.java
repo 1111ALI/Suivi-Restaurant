@@ -35,6 +35,7 @@ public class NavigationController {
 
     @GetMapping("/create")
     public String nouveauRestaurant(@ModelAttribute Restaurant restaurant, Model model) {
+
         return "restaurants/create";
     }
 
@@ -43,4 +44,22 @@ public class NavigationController {
         restaurantController.create(restaurant);
         return "redirect:/all";
     }
+
+    // Debut de l'authentification
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+    @PostMapping("/login")
+    public String connection(){
+        return "redirect:/home";
+    }
+
+    @GetMapping("/home-auth")
+    public String home(){
+        return "restaurants/home";
+    }
+
+    //Fin de l'authentification
+
 }
