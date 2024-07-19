@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "persons")
@@ -21,5 +22,10 @@ public class Person {
     private Long personId;
     private String username;
     private String password;
+    private String passwordConfirmation;
+    private UUID activationCode;
+    private UUID resetCode;
+    private String email;
     private Set<PersonRole> roles;
+    private boolean isactivated;
 }

@@ -9,19 +9,21 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Set;
-
-@Configuration
-@RequiredArgsConstructor
-public class DataInitializer {
-    private final PersonRepository personRepository;
-    private final PasswordEncoder passwordEncoder;
-    @PostConstruct
-    public void init(){
-        Person person = new Person();
-        person.setUsername("admin");
-        person.setPassword(passwordEncoder.encode("mot2pass"));
-        person.setRoles(Set.of(PersonRole.ADMIN, PersonRole.USER));
-        personRepository.save(person);
-    }
-
-}
+//
+//@Configuration
+//@RequiredArgsConstructor
+//public class DataInitializer {
+//    private final PersonRepository personRepository;
+//    private final PasswordEncoder passwordEncoder;
+//    @PostConstruct
+//    public void init(){
+//        Person person = new Person();
+//        person.setUsername("admin");
+//        person.setEmail("ali@gamail.com");
+//        person.setPassword(passwordEncoder.encode("mot2pass"));
+//        person.setRoles(Set.of(PersonRole.ADMIN, PersonRole.USER));
+//        person.setIsactivated(true);
+//        personRepository.save(person);
+//    }
+//
+//}

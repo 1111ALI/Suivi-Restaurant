@@ -15,9 +15,3 @@ services:
     ports:
       - 9880:8080
 
-  mysql-db:
-    image: mysql:8.0-debian
-    container_name: mysql-db
-    restart: always
-    ports:
-      - 3306:3306

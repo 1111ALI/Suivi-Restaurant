@@ -15,11 +15,13 @@ public class RestaurantSeviceImpl implements RestaurantService {
 
     @Override
     public Restaurant create(Restaurant restaurant) {
+
         return restaurantRepository.save(restaurant);
     }
 
     @Override
     public List<Restaurant> getAll() {
+
         return restaurantRepository.findAll();
     }
 }

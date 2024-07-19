@@ -1,0 +1,44 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Creer nouveaux Utilisateurs</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-4">Liste des Utilisateurs</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Numero</th>
+            <th>Nom</th>
+            <th>Adresse</th>
+            <th>Mot de passe</th>
+            <th>Role</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="perso : ${persons}">
+            <td th:text="${perso.personId}"></td>
+            <td th:text="${perso.username}"></td>
+            <td th:text="${perso.email}"></td>
+            <td th:text="${perso.password}"></td>
+            <td th:text="${perso.roles}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <p>
+        Hello and welcome to my Web API build !
+    </p>
+    <a th:href="@{/createPerson}">Retour à la page de creation des Utilisateurs</a>
+</div>
+<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

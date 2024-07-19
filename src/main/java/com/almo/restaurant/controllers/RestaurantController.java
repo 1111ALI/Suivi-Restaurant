@@ -15,10 +15,12 @@ public class RestaurantController {
 
     @PostMapping("/new")
     public Restaurant create(@RequestBody Restaurant restaurant) {
+
         return restaurantService.create(restaurant);
     }
     @GetMapping("/All")
     public List<Restaurant> getAll(){
+
         return restaurantService.getAll();
     }
 }
