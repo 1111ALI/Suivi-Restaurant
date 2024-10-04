@@ -1,8 +1,9 @@
-package com.almo.restaurant.controllers;
+package com.almo.restaurant.controllers.api;
 
 import com.almo.restaurant.entity.Restaurant;
 import com.almo.restaurant.service.serviceInterf.RestaurantService;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class RestaurantController {
 
         return restaurantService.create(restaurant);
     }
-    @GetMapping("/All")
+    @GetMapping("/all")
     public List<Restaurant> getAll(){
 
         return restaurantService.getAll();

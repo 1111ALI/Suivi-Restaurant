@@ -1,19 +1,18 @@
-package com.almo.restaurant.controllers;
+package com.almo.restaurant.controllers.frontEnd;
 
+import com.almo.restaurant.controllers.api.PersonController;
+import com.almo.restaurant.controllers.api.RestaurantController;
+import com.almo.restaurant.controllers.api.UploadedFileController;
+import com.almo.restaurant.controllers.api.UtilisateurController;
 import com.almo.restaurant.entity.Person;
 import com.almo.restaurant.entity.Restaurant;
+import com.almo.restaurant.entity.Utilisateur;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 @AllArgsConstructor
@@ -21,6 +20,26 @@ public class NavigationController {
     private final RestaurantController restaurantController;
     private final PersonController personController;
     private final UploadedFileController uploadedFileController;
+    private final UtilisateurController utilisateurController;
+
+
+
+    @PostMapping("/login")
+    public String login(){
+        return "redirect:/recto";
+    }
+
+@GetMapping("/login")
+public String home(){
+        return "login";
+}
+
+
+    @GetMapping("/register")
+    public String ouvrireRegister() {
+        return "persons/register";
+
+    }
 
     @GetMapping(value = "/resto")
     public String index(Model model) {
@@ -28,11 +47,6 @@ public class NavigationController {
         return "index";
     }
 
-    @GetMapping(value = "/home")
-    public String home(Model model) {
-        model.addAttribute("restaurants", restaurantController.getAll());
-        return "home";
-    }
 
     @GetMapping("/all")
     public String getAllRestaurant(Model model) {
@@ -54,6 +68,26 @@ public class NavigationController {
 
     //Traitement Utilisateurs
 
+    @GetMapping("/allutilisateur")
+    public String getAllUtilisateur(Model model) {
+        model.addAttribute("utilisateurs", utilisateurController.getAllUtilisateur());
+        return "persons/all-utilisateur";
+    }
+
+    @GetMapping("/registration")
+    public String enregistrerUtilisateur(@ModelAttribute Utilisateur utilisateur, Model model) {
+        return "persons/register";
+    }
+
+    @PostMapping("/nouveau")
+    public String CreerUtilisateur(@ModelAttribute Utilisateur utilisateur, Model model) {
+        utilisateurController.createUtilisateur(utilisateur);
+        model.addAttribute("message", "Utilisateur enregistré avec success");
+        return "redirect:/allutilisateur";
+    }
+
+    //Traitement Persons
+
     @GetMapping("/allPersons")
     public String getAllPerson(Model model) {
         model.addAttribute("persons", personController.getAllPerson());
@@ -72,41 +106,9 @@ public class NavigationController {
         return "redirect:/allPersons";
     }
 
-    //Fin traitement utilisateurs
-
-
     // Debut de l'authentification
-    @GetMapping("/login")
-    public String login() {
 
-        return "login";
-    }
-
-    @PostMapping("/login")
-    public String connection() {
-
-        return "redirect:/home";
-    }
-
-    @GetMapping("/home-auth")
-    public String home() {
-
-        return "restaurants/home";
-    }
 
     //Fin de l'authentification
-    @GetMapping("/form")
-    public String upload(Model model) {
-        return "upload";
-    }
-
-    @PostMapping("/upload")
-    public String uploadFile(@RequestParam("file") MultipartFile file, Model model) {
-        Map<String, String> reponse = new HashMap<>();
-        reponse = uploadedFileController.saveFile(file);
-        model.addAttribute("message", "File upload successfully");
-        model.addAttribute("message", reponse);
-        return "upload";
-    }
 
 }

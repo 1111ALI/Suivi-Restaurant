@@ -1,4 +1,4 @@
-package com.almo.restaurant.controllers;
+package com.almo.restaurant.controllers.api;
 
 import com.almo.restaurant.service.serviceInterf.UploadedFileServiceInterf;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +13,7 @@ public class UploadedFileController {
    private final UploadedFileServiceInterf uploadedFileServiceInterf;
 
     public Map<String, String> saveFile(MultipartFile file) {
+
         return uploadedFileServiceInterf.saveFile(file);
     }
 }

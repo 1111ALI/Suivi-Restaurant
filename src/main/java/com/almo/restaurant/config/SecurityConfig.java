@@ -14,47 +14,47 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import static org.springframework.security.config.Customizer.withDefaults;
-//
-//@Configuration
-//@EnableWebSecurity
-//@RequiredArgsConstructor
-//public class SecurityConfig {
-//private final PersonDetailService userDetailService;
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http.authorizeHttpRequests(authRequests ->
-//                        authRequests
-//                                .requestMatchers("/admin/**").hasRole(PersonRole.ADMIN.name())
-//                                .requestMatchers("/user/**").hasRole(PersonRole.USER.name())
-//                                .requestMatchers("guests/**").hasRole(PersonRole.GUEST.name())
-//                                .requestMatchers("/css/**","/js/**","/register","/home","login","/activate","/reset-password").permitAll()
-//                                .anyRequest().authenticated()
-//                )
-//                .formLogin(formLogin ->
-//                        formLogin
-//                            .loginPage("/login")
-//                            .defaultSuccessUrl("/register", true)
-//                            .permitAll()
-//                )
-//                .logout(logout ->
-//                        logout
-//                                .logoutUrl("/logout")
-//                                .permitAll()
-//                );
-//
-//        return http.build();
-//    }
-//    @Bean
-//    public UserDetailsService userDetailsService(){
-//        return userDetailService;
-//    }
-//   // @Autowired
-//    public void configureGlobale(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
-//    }
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//
-//        return new BCryptPasswordEncoder();
-//    }
-//}
+
+@Configuration
+@EnableWebSecurity
+@RequiredArgsConstructor
+public class SecurityConfig {
+private final PersonDetailService userDetailService;
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests(authRequests ->
+                        authRequests
+                                .requestMatchers("/admin/**").hasRole(PersonRole.ADMIN.name())
+                                .requestMatchers("/user/**").hasRole(PersonRole.USER.name())
+                                .requestMatchers("guests/**").hasRole(PersonRole.GUEST.name())
+                                .requestMatchers("/css/**","/js/**","/register","/home","login","/activate","/reset-password").permitAll()
+                                .anyRequest().authenticated()
+                )
+                .formLogin(formLogin ->
+                        formLogin
+                            .loginPage("/login")
+                            .defaultSuccessUrl("/register", true)
+                            .permitAll()
+                )
+                .logout(logout ->
+                        logout
+                                .logoutUrl("/logout")
+                                .permitAll()
+                );
+
+        return http.build();
+    }
+    @Bean
+    public UserDetailsService userDetailsService(){
+        return userDetailService;
+    }
+   // @Autowired
+    public void configureGlobale(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailService);
+    }
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+
+        return new BCryptPasswordEncoder();
+    }
+}

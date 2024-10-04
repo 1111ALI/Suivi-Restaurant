@@ -1,4 +1,4 @@
-package com.almo.restaurant.controllers;
+package com.almo.restaurant.controllers.api;
 
 import com.almo.restaurant.entity.Person;
 import com.almo.restaurant.service.serviceInterf.PersonServiceInterf;
@@ -21,7 +21,7 @@ public class PersonController {
         return personServiceInterf.create(person);
     }
 
-    @GetMapping("allPerson")
+    @GetMapping("/allPerson")
     public List<Person> getAllPerson(){
 
         return personServiceInterf.getAllPerson();

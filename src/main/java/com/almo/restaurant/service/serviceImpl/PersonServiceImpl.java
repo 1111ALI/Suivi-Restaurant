@@ -13,10 +13,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PersonServiceImpl implements PersonServiceInterf {
     private final PersonRepository personRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public Person create(Person person) {
-
+        passwordEncoder.encode(person.getPassword());
         return personRepository.save(person);
     }
 
