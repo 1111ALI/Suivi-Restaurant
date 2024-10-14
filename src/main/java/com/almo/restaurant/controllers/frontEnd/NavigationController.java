@@ -4,6 +4,7 @@ import com.almo.restaurant.controllers.api.PersonController;
 import com.almo.restaurant.controllers.api.RestaurantController;
 import com.almo.restaurant.controllers.api.UploadedFileController;
 import com.almo.restaurant.controllers.api.UtilisateurController;
+import com.almo.restaurant.dto.PersonDto;
 import com.almo.restaurant.entity.Person;
 import com.almo.restaurant.entity.Restaurant;
 import com.almo.restaurant.entity.Utilisateur;
@@ -24,15 +25,10 @@ public class NavigationController {
 
 
 
-    @PostMapping("/login")
-    public String login(){
-        return "redirect:/recto";
-    }
 
-@GetMapping("/login")
-public String home(){
-        return "login";
-}
+
+
+
 
 
     @GetMapping("/register")
@@ -95,14 +91,15 @@ public String home(){
     }
 
     @GetMapping("/createPerson")
-    public String nouveauPerson(@ModelAttribute Person person, Model model) {
+    public String nouveauPerson(@ModelAttribute PersonDto personDto, Model model) {
 
         return "persons/create-person";
     }
 
     @PostMapping("/newPersons")
-    public String createPerson(@ModelAttribute Person person, Model model) {
-        personController.create(person);
+    public String createPerson(@ModelAttribute PersonDto personDto, Model model) {
+        personController.createPerson(personDto);
+        //personController.create(person);
         return "redirect:/allPersons";
     }
 

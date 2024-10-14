@@ -8,29 +8,261 @@
     <title>Creer nouveau utilisateur</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
+<style>
+    * {
+margin: 0;
+padding: 0;
+outline: none;
+}
+
+body {
+   /*background: linear-gradient(45deg, #fc466b, #3f5efb);*/
+   background: #0e2433;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+/*-------------------------------*/
+
+.container {
+    position: relative;
+   display: flex;
+}
+
+section{
+    padding: 200px;
+}
+
+.row{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.row .col50{
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+    font-weight: bold;
+}
+.row .col50 h2{
+    margin-bottom: 20px;
+    color: white;
+}
+
+/*--------------------------------*/
+
+p {
+    position: relative;
+    color: white;
+    font-weight: 500;
+    opacity: .7;
+    font-size: 1.4rem;
+    margin-right: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
+   
+}
+
+form {
+    background: rgba(255, 255, 255, .3);
+    padding-top: -2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+   /*padding-bottom: 3rem;*/
+    /*margin-left: -300px;*/
+    margin-right: 400px;
+    height: 600px;
+    border-radius: 20px;
+    border-left: 1px solid rgba(255, 255, 255, .3);
+    border-top: 1px solid rgba(255, 255, 255, .3);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    -moz-backdrop-filter: blur(10px) ;
+
+    box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, .2);
+    text-align: center;
+    width: 400px;
+}
+
+.enregistrement {
+    padding-top: -10px;
+}
+
+h1 {
+    color: white;
+    font-weight: 500;
+    opacity: .7;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: -15px;
+    text-align: left;
+}
+
+input {
+    background: transparent;
+    border: none;
+    border-left: 1px solid rgba(255, 255, 255, .3);
+    border-top: 1px solid rgba(255, 255, 255, .3);
+    padding-top: 1rem;
+    width: 300px;
+    border-radius: 50px;
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    -moz-backdrop-filter: blur(5px) ;
+
+    box-shadow: 4px 4px 60px rgba(0, 0, 0, .2);
+    color: white;
+    font-weight: 500;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
+    transition: all .3s;
+    margin-bottom: 10px;
+}
+
+::placeholder {
+    color: white;
+}
+
+input:hover, 
+input[type="email"]:focus
+input[type="password"]:focus {
+    background: rgba(255, 255, 255, .1);
+    box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, .2);
+}
+
+button {
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 1rem;
+    width: 150px;
+    background: rgba(255, 255, 255, .1);
+    box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, .2);
+
+    background: transparent;
+    border: none;
+    border-left: 1px solid rgba(255, 255, 255, .3);
+    border-top: 1px solid rgba(255, 255, 255, .3);
+    padding: 1rem;
+    /*width: 200px;*/
+    border-radius: 50px;
+    transition: all .3s;
+    color: white;
+}
+
+button:hover {
+    background: rgba(255, 255, 255, .1);
+    box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, .2);
+}
+
+/*input[type="button"] {
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 1rem;
+    width: 150px;
+}*/
+
+.retour {
+    position: relative;
+    margin-top: 20px;
+    margin-left: 50px;
+    color: black;
+    text-decoration: none;
+    font-size: 17px;
+    transition: all .3s;
+    cursor: pointer;
+
+    background: transparent;
+    border: none;
+    border-left: 1px solid rgba(255, 255, 255, .3);
+    border-top: 1px solid rgba(255, 255, 255, .3);
+    padding: 0.25rem;
+    width: 200px;
+    border-radius: 50px;
+    transition: all .3s;
+}
+
+.retour:hover {
+    background: rgba(255, 255, 255, .1);
+    box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, .2);
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, .2); 
+}
+
+
+/*-------------------------------------------------
+
+section{
+    padding: 100px;
+}
+.row{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.row .col50{
+    position: relative;
+    width: 48%;
+    justify-content: center;
+    align-items: center;
+}
+.row .col50 h2{
+    margin-bottom: 20px;
+}*/
+
+
+
+
+</style>
 <body>
 <div class="container">
-    <h1 class="mt-5">Nouveau Utilisateur</h1>
-    <form action="#" th:action="@{/newPersons}" th:object="${person}" method="post" class="mt-3">
-        <div>
-            <label for="nom">Nom: </label>
-            <input type="text" id="nom" th:field="*{username}" class="form-control"/>
+    <div>
+        <form action="#" th:action="@{/newPersons}" th:object="${personDto}" method="post" class="mt-3">
+            <div class="enregistrement">
+                <h1 class="mt-5">Enregistrement</h1>
+            </div>
+            <div>
+                <label for="nom">Nom: </label><br>
+                <input type="text" id="nom" th:field="*{username}" class="form-control" placeholder="Saisissez le Nom Complet" required/>
+            </div>
+            <div>
+                <label for="email">E-mail: </label><br>
+                <input type="text" id="email" th:field="*{email}" class="form-control" placeholder="Saisissez E-mail" required/>
+            </div>
+            <div>
+                <label for="password">Mot de passe: </label><br>
+                <input type="password" id="password" th:field="*{password}" class="form-control" placeholder="Saisissez le Mot de Passe" minlength="8" required/>
+            </div>
+            <div>
+                <label for="roles">Role: </label><br>
+                <input type="text" id="roles" th:field="*{roles}" class="form-control" placeholder="Saisissez le Role de l'utilisateur" required/>
+            </div>
+            <button type="submit" class="btn btn-secondary mt-3">Enregistrer</button>
+            <div class="retour">
+                <a th:href="@{/allPersons}">Retour à la liste des utilisateurs</a>
+            </div>
+        </form>
+    </div>
+
+    <section class="apropos" id="apropos">
+        <div class="row">
+            <div class="col50">
+                <h2 class="titre-texte"> <span>C</span>ontrol <span>M</span>anager</h2>
+                <p>Création des utilisateurs</p>
+            </div>
         </div>
-        <div>
-            <label for="email">E-mail: </label>
-            <input type="text" id="email" th:field="*{email}" class="form-control"/>
-        </div>
-        <div>
-            <label for="roles">Role: </label>
-            <input type="text" id="roles" th:field="*{roles}" class="form-control"/>
-        </div>
-        <div>
-            <label for="password">Mot de passe: </label>
-            <input type="password" id="password" th:field="*{password}" class="form-control"/>
-        </div>
-        <button type="submit" class="btn btn-secondary mt-3">Enregistrer</button>
-    </form>
-    <a th:href="@{/allPersons}">Retour à la liste de utilisateur</a>
+    </section>
 
 </div>
 <script th:src="@{/js/jquery-3.7.1.min.js}"></script>

@@ -19,7 +19,7 @@ public class PersonDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Person person = personRepository.findByUsername(username);
+        Person person = personRepository. findByEmail(username);
 
         if ( person == null){
             throw new UsernameNotFoundException("utilisateur introuvable dans la BD ! ");

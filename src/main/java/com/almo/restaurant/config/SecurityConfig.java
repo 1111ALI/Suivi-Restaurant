@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,7 +21,8 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-private final PersonDetailService userDetailService;
+    private final PersonDetailService userDetailService;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authRequests ->
@@ -27,14 +30,14 @@ private final PersonDetailService userDetailService;
                                 .requestMatchers("/admin/**").hasRole(PersonRole.ADMIN.name())
                                 .requestMatchers("/user/**").hasRole(PersonRole.USER.name())
                                 .requestMatchers("guests/**").hasRole(PersonRole.GUEST.name())
-                                .requestMatchers("/css/**","/js/**","/register","/home","login","/activate","/reset-password").permitAll()
+                                .requestMatchers("/css/**", "/js/**", "/register", "/home", "login", "/activate", "/reset-password").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->
                         formLogin
-                            .loginPage("/login")
-                            .defaultSuccessUrl("/register", true)
-                            .permitAll()
+                                .loginPage("/login")
+                                .defaultSuccessUrl("/home", true)
+                                .permitAll()
                 )
                 .logout(logout ->
                         logout
@@ -46,15 +49,26 @@ private final PersonDetailService userDetailService;
     }
     @Bean
     public UserDetailsService userDetailsService(){
+
         return userDetailService;
     }
-   // @Autowired
+
+//    @Bean
+//    public void UserDetailsService userDetailsService() {
+//        UserDetails user = User.withDefaultPasswordEncoder()
+//                .username("ali")
+//                .password("12345678")
+//                .roles("ADMIN")
+//                .build();
+//    }
+
+     @Autowired
     public void configureGlobale(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailService);
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
-
         return new BCryptPasswordEncoder();
     }
 }

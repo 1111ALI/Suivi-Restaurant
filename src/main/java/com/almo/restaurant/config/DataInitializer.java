@@ -18,7 +18,7 @@ public class DataInitializer {
     @PostConstruct
     public void init(){
         Person person = new Person();
-        person.setUsername("ali mohaman");
+        person.setUsername("ali");
         person.setEmail("ali@gmail.com");
         person.setPassword(passwordEncoder.encode("12345678"));
         person.setRoles(Set.of(PersonRole.ADMIN, PersonRole.USER));

@@ -1,34 +1,55 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home Page</title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-</head>
-<body class="container-fluid">
-<h1>Liste des restaurants</h1>
-<div>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <!link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 
-</div>
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>Numero</th>
-        <th>Nom</th>
-        <th>Adresse</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="restau:${restaurants}">
-        <td th:text="${restau.restaurantId}"></td>
-        <td th:text="${restau.nom}"></td>
-        <td th:text="${restau.adresse}"></td>
-    </tr>
-    </tbody>
-</table>
-<p>
-    Hello and welcome to my Web API build !
-</p>
-<script th:src="@{/js/bootstrap.min.js}"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>RestoADACORP</title>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo"><span>C</span>ontrole <span>M</span>anager</a>
+        <div class="menutoggle" onclick="toggleMenu();"> </div>
+        <ul class= "navbar">
+            <li> <a href="#banniere" onclick="toggleMenu();">Accueil</a></li>
+            <li> <a href="#apropos" onclick="toggleMenu();">Passation</a></li>
+            <li> <a href="#menu" onclick="toggleMenu();">Controle</a></li>
+            <li> <a href="#expert" onclick="toggleMenu();">Statistiques</a></li>
+            <li> <a href="#temoignage" onclick="toggleMenu();">Décomptes</a></li>
+            <li> <a href="#contact" onclick="toggleMenu();">Documents</a></li>
+            <a href="#" class="btn-reserve" onclick="toggleMenu();">Authentification</a>
+
+        </ul>
+    </header>
+    <section class="banniere" id="banniere"> 
+        <div class="contenu">
+            <h2> Controle Manager</h2>
+            <p> Un programme de suivi et du controle de la passation et de l'execution des Marchés Publics</p>
+            <a href="#" class="btn1">Supprimer Utilisateur</a>
+            <a th:href="@{/createPerson}" class="btn2">Créer Utilisateur</a>
+        </div>
+    </section>
+       <div class="copyright">
+        <p> copyright 2024 <a href="#">Ali Mohaman </a> Conception et Developpement</p>
+       </div>
+       <script type="text/javascript">
+        window.addEventListener('scroll', function(){
+            const header = document.querySelector('header');
+            header.classList.toggle("sticky", window.scrollY>0);
+        });
+
+        function toggleMenu(){
+            const toggleMenu = document.querySelector('.menutoggle');
+            const navbar=document.querySelector('navbar');
+            menutoggle.classList.toggle('active');
+            navbar.classList.toggle('active');
+        }
+
+       </script>
 </body>
 </html>
