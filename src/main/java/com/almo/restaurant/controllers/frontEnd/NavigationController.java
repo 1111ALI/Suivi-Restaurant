@@ -23,12 +23,26 @@ public class NavigationController {
     private final UploadedFileController uploadedFileController;
     private final UtilisateurController utilisateurController;
 
+    // Debut de l'authentification
 
+    @GetMapping("/login")
+    public String login() {
 
+        return "login";
+    }
 
+    @PostMapping("/login")
+    public String connected() {
 
+        return "redirect:/home";
+    }
 
+    @GetMapping("/home")
+    public String home() {
 
+        return "home";
+    }
+    //Fin de l'authentification
 
 
     @GetMapping("/register")
@@ -99,13 +113,8 @@ public class NavigationController {
     @PostMapping("/newPersons")
     public String createPerson(@ModelAttribute PersonDto personDto, Model model) {
         personController.createPerson(personDto);
-        //personController.create(person);
+        model.addAttribute("message", "Utilisateur enregistré avec success");
         return "redirect:/allPersons";
     }
-
-    // Debut de l'authentification
-
-
-    //Fin de l'authentification
 
 }

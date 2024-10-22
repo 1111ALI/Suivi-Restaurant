@@ -7,27 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Controller
-//@RequestMapping("/auth")
+@RequestMapping("/auth")
 public class AuthController {
 
-    @GetMapping("/login")
-    public String login() {
 
-        return "login";
-    }
-
-
-    @PostMapping("/login")
-    public String connected() {
-        return "redirect:/home";
-    }
-
-
-
-    @GetMapping("/home")
-    public String home() {
-
-        return "home";
-    }
 
 }
